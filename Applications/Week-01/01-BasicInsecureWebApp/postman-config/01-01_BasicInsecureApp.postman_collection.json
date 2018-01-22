@@ -2,8 +2,8 @@
 	"variables": [],
 	"info": {
 		"name": "01-01_InsecureBlog",
-		"_postman_id": "ac104230-9eae-eb5a-6170-92e14aba4889",
-		"description": "Application Security basic insecure app example.",
+		"_postman_id": "f2fa4dc8-f353-95d0-9f6f-9bfdce9c3f74",
+		"description": "Application Security basic insecure blog.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [

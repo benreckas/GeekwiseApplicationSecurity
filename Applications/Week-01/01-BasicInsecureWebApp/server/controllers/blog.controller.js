@@ -2,13 +2,13 @@ const Blog = require('../models/blog.model');
 const BlogDb = require('../db/blog.db');
 const Common = require('./common');
 
-class CarController {
+class BlogController {
     constructor(router) {
         router.route('/blog/:id')
             .get(this.getOne)
             .put(this.updateOne)
             .delete(this.deleteOne);
-        router.route('/car')
+        router.route('/blog')
             .get(this.getAll)
             .post(this.insertOne);
     }

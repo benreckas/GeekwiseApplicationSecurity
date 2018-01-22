@@ -47,7 +47,7 @@ function addBlog(e) {
     blogid.val(0);
     $("#blog-submit").val('Add Blog');
     user.val("");
-    blog.val("");
+    content.val("");
 }
 
 function editBlog(e) {
