@@ -1,38 +1,38 @@
 {
 	"variables": [],
 	"info": {
-		"name": "01-01_BasicInsecureApp",
+		"name": "01-01_InsecureBlog",
 		"_postman_id": "ac104230-9eae-eb5a-6170-92e14aba4889",
 		"description": "Application Security basic insecure app example.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "/api/car/1",
+			"name": "/api/blog/1",
 			"request": {
-				"url": "http://localhost:3000/api/car/1",
+				"url": "http://localhost:3000/api/blog/1",
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"description": "Get a single car"
+				"description": "Get a single blog entry"
 			},
 			"response": []
 		},
 		{
-			"name": "/api/car/",
+			"name": "/api/blog/",
 			"request": {
-				"url": "http://localhost:3000/api/car",
+				"url": "http://localhost:3000/api/blog",
 				"method": "GET",
 				"header": [],
 				"body": {},
-				"description": "Get all cars"
+				"description": "Get all blog entries"
 			},
 			"response": []
 		},
 		{
-			"name": "/api/car/",
+			"name": "/api/blog/",
 			"request": {
-				"url": "http://localhost:3000/api/car",
+				"url": "http://localhost:3000/api/blog",
 				"method": "POST",
 				"header": [
 					{
@@ -45,27 +45,27 @@
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
-							"key": "make",
-							"value": "Honda",
+							"key": "name",
+							"value": "",
 							"type": "text",
 							"enabled": true
 						},
 						{
-							"key": "model",
-							"value": "Civic",
+							"key": "content",
+							"value": "",
 							"type": "text",
 							"enabled": true
 						}
 					]
 				},
-				"description": "Create a new car entry"
+				"description": "Create a new blog entry"
 			},
 			"response": []
 		},
 		{
-			"name": "/api/car/1",
+			"name": "/api/blog/1",
 			"request": {
-				"url": "http://localhost:3000/api/car/1",
+				"url": "http://localhost:3000/api/blog/1",
 				"method": "PUT",
 				"header": [
 					{
@@ -78,25 +78,25 @@
 					"mode": "urlencoded",
 					"urlencoded": [
 						{
-							"key": "model",
-							"value": "Golf",
+							"key": "name",
+							"value": "Ben",
 							"type": "text",
 							"enabled": true
 						}
 					]
 				},
-				"description": "Update a car entry"
+				"description": "Update a blog entry"
 			},
 			"response": []
 		},
 		{
-			"name": "/api/car/1",
+			"name": "/api/blog/1",
 			"request": {
-				"url": "http://localhost:3000/api/car/1",
+				"url": "http://localhost:3000/api/blog/1",
 				"method": "DELETE",
 				"header": [],
 				"body": {},
-				"description": "Delete a car entry"
+				"description": "Delete a blog entry"
 			},
 			"response": []
 		}

@@ -1,7 +1,7 @@
-const CarController = require('./car.controller');
+const BlogController = require('./blog.controller');
 const express = require('express');
 const router = express.Router();
 
-const carController = new CarController(router);
+const blogController = new BlogController(router);
 
 module.exports = router;

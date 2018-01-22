@@ -9,5 +9,5 @@ CREATE TABLE cars (
     is_deleted boolean DEFAULT false NOT NULL
 );
 
-ALTER TABLE ONLY cars ADD CONSTRAINT car_pkey PRIMARY KEY (id);
-ALTER TABLE cars OWNER TO postgres;
+ALTER TABLE ONLY cars ADD CONSTRAINT blogs_pkey PRIMARY KEY (id);
+ALTER TABLE blogs OWNER TO postgres;

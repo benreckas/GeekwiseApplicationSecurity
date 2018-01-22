@@ -1,10 +1,10 @@
-const Car = require('../models/car.model');
-const CarDb = require('../db/car.db');
+const Blog = require('../models/blog.model');
+const BlogDb = require('../db/blog.db');
 const Common = require('./common');
 
 class CarController {
     constructor(router) {
-        router.route('/car/:id')
+        router.route('/blog/:id')
             .get(this.getOne)
             .put(this.updateOne)
             .delete(this.deleteOne);
@@ -15,10 +15,10 @@ class CarController {
 
     async getOne(req, res, next) {
         try {
-            const data = await CarDb.getOne(req.params.id);
+            const data = await BlogDb.getOne(req.params.id);
             if (data) {
-                let car = new Car(data);
-                return Common.resultOk(res, car);
+                let blog = new Blog(data);
+                return Common.resultOk(res, blog);
             } else {
                 return Common.resultNotFound(res);
             }
@@ -34,10 +34,10 @@ class CarController {
 
     async updateOne(req, res, next) {
         try {
-            const data = await CarDb.updateOne(req.params.id, req.body);
+            const data = await BlogDb.updateOne(req.params.id, req.body);
             if (data) {
-                let car = new Car(data);
-                return Common.resultOk(res, car);
+                let blog = new Blog(data);
+                return Common.resultOk(res, blog);
             } else {
                 return Common.resultNotFound(res);
             }
@@ -53,10 +53,10 @@ class CarController {
 
     async insertOne(req, res, next) {
         try {
-            const data = await CarDb.insertOne(req.body);
+            const data = await BlogDb.insertOne(req.body);
             if (data) {
-                let car = new Car(data);
-                return Common.resultOk(res, car);
+                let blog = new Blog(data);
+                return Common.resultOk(res, blog);
             } else {
                 return Common.resultNotFound(res);
             }
@@ -72,7 +72,7 @@ class CarController {
 
     async deleteOne(req, res, next) {
         try {
-            const data = await CarDb.deleteOne(req.params.id);
+            const data = await BlogDb.deleteOne(req.params.id);
             if (data) {
                 return Common.resultOk(res, data);
             } else {
@@ -90,10 +90,10 @@ class CarController {
 
     async getAll(req, res, next) {
         try {
-            const data = await CarDb.getAll();
+            const data = await BlogDb.getAll();
             if (data) {
-                let cars = data.map(car => { return new Car(car) });
-                return Common.resultOk(res, cars);
+                let blogs = data.map(blog => { return new Blog(blog) });
+                return Common.resultOk(res, blogs);
             } else {
                 return Common.resultNotFound(res);
             }
@@ -103,4 +103,4 @@ class CarController {
     }
 }
 
-module.exports = CarController;
+module.exports = BlogController;

@@ -1,8 +1,8 @@
 const db = require('./db');
 
-const TABLENAME = 'cars';
+const TABLENAME = 'blogs';
 
-class CarDb {
+class BlogDb {
     static getOne(id) {
         id = parseInt(id);
         let query = `SELECT * FROM ${TABLENAME} WHERE is_deleted=false AND id = ${id}`;
@@ -54,4 +54,4 @@ class CarDb {
     }
 }
 
-module.exports = CarDb;
+module.exports = BlogDb;
