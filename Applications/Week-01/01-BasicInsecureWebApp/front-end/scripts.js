@@ -20,6 +20,7 @@ function addBlog(e) {
     e.preventDefault();
     let name = $("#name");
     let content = $("#content");
+    let id = $("#blogid");
 
     let nameVal = name.val();
     let contentVal = content.val();
