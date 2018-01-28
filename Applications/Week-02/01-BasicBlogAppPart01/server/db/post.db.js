@@ -38,13 +38,15 @@ class PostDb {
     static insertOne(data) {
         let params = [];
         let values = [];
+        /*
         Object.keys(data).forEach((key) => {
             params.push(key);
             values.push(`'${data[key]}'`);
         });
-        let query = `INSERT into ${TABLENAME} (${params.join()}) VALUES(${values.join()}) RETURNING *`;
+        */
+        let query = `INSERT into posts (title, post, author) VALUES($1, $2, $3) RETURNING *`;
         console.log(query);
-        return db.one(query);
+        return db.one(query, [data['title'], data['posts'], data['author']]);
     }
 
     static getTotal() {
@@ -55,9 +57,10 @@ class PostDb {
 
     static search(param) {
         //let query = `SELECT * FROM ${TABLENAME} WHERE is_deleted=false AND post ILIKE '%${param}%' OR author ILIKE '%${param}%'`;
-        let query = `SELECT * FROM ${TABLENAME} WHERE is_deleted=false AND author = '${param}'`;
+        let query = `SELECT * FROM posts WHERE is_deleted=false AND author = $1 ORDER BY title ${order ? 'ASC' : 'DESC'}`;
+
         console.log(query);
-        return db.any(query);
+        return db.any(query, [param]);
     }
 }
 

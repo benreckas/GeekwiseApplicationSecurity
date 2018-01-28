@@ -43,6 +43,10 @@ function searchPosts(e) {
     });
 }
 
+function sortPosts(e) {
+
+}
+
 function addPost(e) {
     e.preventDefault();
     let title = $("#posttitle");
