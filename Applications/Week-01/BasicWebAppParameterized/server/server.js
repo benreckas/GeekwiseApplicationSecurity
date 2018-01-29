@@ -1,7 +1,6 @@
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const xss = require("xss");
 const app = express();
 require('dotenv').config();
 
