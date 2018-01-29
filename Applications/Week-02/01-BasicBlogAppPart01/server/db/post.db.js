@@ -1,17 +1,18 @@
 const db = require('./db');
+var xss = require("xss");
 
 const TABLENAME = 'posts';
 
 class PostDb {
     static getOne(id) {
         id = parseInt(id);
-        let query = `SELECT * FROM ${TABLENAME} WHERE is_deleted=false AND id = ${id}`;
+        let query = `SELECT * FROM posts WHERE is_deleted=false AND id = ${id}`;
         console.log(query);
         return db.oneOrNone(query);
     }
 
     static getAll(order) {
-        let query = `SELECT * FROM ${TABLENAME} WHERE is_deleted=false ORDER BY title ${order ? 'ASC' : 'DESC'}`;
+        let query = `SELECT * FROM posts WHERE is_deleted=false ORDER BY title ${order ? 'ASC' : 'DESC'}`;
         console.log(query);
         return db.any(query);
     }
@@ -22,7 +23,7 @@ class PostDb {
         Object.keys(data).forEach((key) => {
             params.push(`${key} = '${data[key]}'`);
         });
-        let query = `UPDATE ${TABLENAME} SET ${params.join()} WHERE is_deleted=false AND id = ${id} RETURNING *`;
+        let query = `UPDATE posts SET ${params.join()} WHERE is_deleted=false AND id = ${id} RETURNING *`;
         console.log(query);
         return db.one(query);
     }
@@ -30,7 +31,7 @@ class PostDb {
     static deleteOne(id) {
         id = parseInt(id);
         //let query = `DELETE FROM ${TABLENAME} WHERE id = ${id}`;
-        let query = `UPDATE ${TABLENAME} SET is_deleted=true WHERE id = ${id}`;
+        let query = `UPDATE posts SET is_deleted=true WHERE id = ${id}`;
         console.log(query);
         return db.result(query, [], r => r.rowCount);
     }
@@ -44,13 +45,13 @@ class PostDb {
             values.push(`'${data[key]}'`);
         });
         */
-        let query = 'INSERT into posts (title, post, author) VALUES($1, $2, $3) RETURNING *';
+        let query = `INSERT into posts (title, post, author) VALUES($1, $2, $3) RETURNING *`;
         console.log(query);
         return db.one(query, [data['title'], data['post'], data['author']]);
     }
 
     static getTotal() {
-        let query = `SELECT count(*) FROM ${TABLENAME}`;
+        let query = `SELECT count(*) FROM posts`;
         console.log(query);
         return db.one(query, [], a => +a.count);
     }
