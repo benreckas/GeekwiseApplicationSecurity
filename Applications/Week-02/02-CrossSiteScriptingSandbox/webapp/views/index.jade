@@ -3,3 +3,27 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  div
+    h2 Content
+    input(type="text", name="content", value='#{content}')
+    div
+    #{content}
+  div
+    h2 Attribute
+    input(type="text", name="attribute", value='#{attribute}')
+    div
+    #{content}
+  div
+    h2 CSS
+    input(type="text", name="css", value='#{css}')
+    div
+    #{content}
+  div
+    h2 JavaScript
+    input(type="text", name="js", value='#{js}')
+    <script type="text/javascript">
+    #{js}
+    </script>
+  div
+    button(type="submit") Submit
+
