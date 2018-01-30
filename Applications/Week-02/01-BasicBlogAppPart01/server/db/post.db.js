@@ -1,6 +1,8 @@
 const db = require('./db');
 var xss = require("xss");
 
+var html = xss('<script>alert("xss");</script>');
+
 const TABLENAME = 'posts';
 
 class PostDb {
