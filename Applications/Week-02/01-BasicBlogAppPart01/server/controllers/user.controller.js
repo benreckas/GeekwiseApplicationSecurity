@@ -13,6 +13,8 @@ class UserController {
         router.route('/user')
             .get(this.getAll)
             .post(this.insertOne);
+        router.route('/user/login')
+            .post(this.login);
     }
 
     async login(req, res, next) {
