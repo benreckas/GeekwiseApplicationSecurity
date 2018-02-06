@@ -1,6 +1,7 @@
 const Post = require('../models/post.model');
 const PostDb = require('../db/post.db');
 const Common = require('./common');
+const bcrypt = require('bcrypt');
 
 class PostController {
     constructor(router) {

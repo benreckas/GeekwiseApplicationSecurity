@@ -19,14 +19,14 @@ class UserController {
 
     async login(req, res, next) {
         try {
-            let username = req.body.username;
+            let email = req.body.email;
             let password = req.body.password;
-            const data = await UserDb.getUserLogin(username, password);
+            const data = await UserDb.getUserLogin(email, password);
             if (data) {
                 let user = new User(data);
                 return Common.resultOk(res, user);
             } else {
-                return Common.resultNotFound(res);
+                return Common.resultNotFound(res, "Email or Password was incorrect.");
             }
         } catch (e) {
             // handle error
