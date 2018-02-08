@@ -53,3 +53,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+// Try to login and logout and mimic Corey's functionality
+// Difference between authentication and authorization
