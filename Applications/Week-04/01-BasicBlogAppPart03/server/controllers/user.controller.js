@@ -1,6 +1,11 @@
 const User = require('../models/user.model');
 const UserDb = require('../db/user.db');
 const Common = require('./common');
+const bcrypt = require('bcrypt');
+
+const SALT_ROUNDS = 15;
+
+const LOGIN_FAIL = 'Email or Password was incorrect.';
 
 class UserController {
     constructor(router) {
@@ -15,18 +20,65 @@ class UserController {
             .post(this.insertOne);
         router.route('/user/login')
             .post(this.login);
+        router.route('/user/register')
+            .post(this.register);
     }
 
     async login(req, res, next) {
         try {
             let email = req.body.email;
             let password = req.body.password;
+<<<<<<< HEAD
             const data = await UserDb.getUserLogin(email, password);
+=======
+            const data = await UserDb.getByEmail(email);
+>>>>>>> upstream/master
             if (data) {
-                let user = new User(data);
-                return Common.resultOk(res, user);
+                let result = await bcrypt.compare(password, data.password);
+                if (result) {
+                    let user = new User(data);
+                    return Common.resultOk(res, user);
+                } else {
+                    return Common.resultNotFound(res, LOGIN_FAIL);
+                }
             } else {
+<<<<<<< HEAD
                 return Common.resultNotFound(res, "Email or Password was incorrect.");
+=======
+                // in debug mode we could say user doesn't exist here
+                return Common.resultNotFound(res, LOGIN_FAIL);
+            }
+        } catch (e) {
+            // handle error
+            if (e.code == 0) {
+                return Common.resultNotFound(res);
+            } else {
+                return Common.resultErr(res, e.message);
+            }
+        }
+    }
+
+    async register(req, res, next) {
+        try {
+            let email = req.body.email;
+            let password = req.body.password;
+            let username = req.body.username;
+            // check if username is available
+            const data = await UserDb.getByEmail(email);
+            if (data) {
+                // user already exists
+                return Common.userAlreadyExists(res);
+            } else {
+                // calculate hash
+                const hash = await bcrypt.hash(password, SALT_ROUNDS);
+                // Store user account with hash
+                const user = await UserDb.register(username, email, hash);
+                if (user) {
+                    Common.resultOk(res, new User(user));
+                } else {
+                    Common.resultErr(res);
+                }
+>>>>>>> upstream/master
             }
         } catch (e) {
             // handle error

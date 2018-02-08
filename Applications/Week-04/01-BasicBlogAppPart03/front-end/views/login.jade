@@ -1,6 +1,7 @@
 extends layout
 
 block content
+<<<<<<< HEAD
     form(action="http://localhost:3000/api/user/login" method="post")
         div(class="form-group row")
             label(for="inputEmail" class="col-sm-2 col-form-label") Email
@@ -13,3 +14,19 @@ block content
         div(class="form-group row") 
             div(class="offset-sm-2 col-sm-10")
                 input(type="submit" class="btn btn-primary")
+=======
+  div(class='row justify-content-center align-items-center')
+    div(id='login-container' class='col-sm-8 border border-primary rounded py-3 bg-light')
+      form(id='login-form' action='login' method='post')
+        div(class='form-group')
+          label(for='inputEmail' class='col-form-label') Email
+          input(type='email' class='form-control' id='inputEmail' aria-describedby='email-help' name='email')
+          small(id='email-help' class='form-text text-muted') We'll never share your email with anyone else.
+        div(class='form-group')
+          label(for='inputPassword' class='col-form-label') Password
+          input(type='password' class='form-control' id='inputPassword' name='password')
+        input(type='submit' class='btn btn-primary')
+
+block append scripts
+  script(src='/javascripts/login.js')
+>>>>>>> upstream/master

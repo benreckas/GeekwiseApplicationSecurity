@@ -3,12 +3,19 @@ const db = require('./db');
 const TABLENAME = 'users';
 
 class UserDb {
+<<<<<<< HEAD
     static getUserLogin(email, password) {
         let query = `SELECT * FROM ${TABLENAME} WHERE email = $1 AND password = $2`;
         console.log(query);
         return db.oneOrNone(query, [email, password]);
+=======
+    static getByEmail(email) {
+        let query = `SELECT * FROM ${TABLENAME} WHERE email = $1`;
+        let params = [email];
+        console.log(query, params);
+        return db.oneOrNone(query, params);
+>>>>>>> upstream/master
     }
-
 
     static getOne(id) {
         id = parseInt(id);
@@ -42,16 +49,11 @@ class UserDb {
         return db.result(query, [], r => r.rowCount);
     }
 
-    static insertOne(data) {
-        let params = [];
-        let values = [];
-        Object.keys(data).forEach((key) => {
-            params.push(key);
-            values.push(`'${data[key]}'`);
-        });
-        let query = `INSERT into ${TABLENAME} (${params.join()}) VALUES(${values.join()}) RETURNING *`;
-        console.log(query);
-        return db.one(query);
+    static register(username, email, password) {
+        let query = `INSERT into ${TABLENAME} (username, email, password) VALUES($1, $2, $3) RETURNING *`;
+        let params = [username, email, password];
+        console.log(query, params);
+        return db.one(query, params);
     }
 
     static getTotal() {

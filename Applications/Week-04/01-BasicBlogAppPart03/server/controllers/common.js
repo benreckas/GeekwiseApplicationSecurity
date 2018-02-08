@@ -6,7 +6,14 @@ class Common {
         res.status(500).json({ error: obj });
     }
     static resultNotFound(res, msg) {
+<<<<<<< HEAD
         res.status(404).json({ message: msg ? msg : 'Not found.' });
+=======
+        res.status(404).json({ message: msg ? msg : 'Not Found' });
+    }
+    static userAlreadyExists(res) {
+        res.status(403).json({ message: 'User already exists.' });
+>>>>>>> upstream/master
     }
 }
 
