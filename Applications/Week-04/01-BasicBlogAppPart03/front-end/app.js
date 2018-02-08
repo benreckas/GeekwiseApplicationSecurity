@@ -22,6 +22,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Console logs a cookie object in the terminal. 
+app.use('/', function (req, res, next) {
+  // Cookies that have not been signed
+  console.log('Cookies: ', req.cookies)
+  // Cookies that have been signed
+  console.log('Signed Cookies: ', req.signedCookies)
+  next();
+});
+
 app.use('/', index);
 app.use('/users', users);
 

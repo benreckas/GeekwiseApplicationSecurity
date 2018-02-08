@@ -97,4 +97,7 @@ let MyBlogApp = {};
             MyBlogApp.spinner.stop();
         }
     }
+
+    
+
 }());
