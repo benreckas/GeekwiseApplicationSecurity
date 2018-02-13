@@ -1,5 +1,10 @@
 body {
     background-color: #220c57;
+    color: white;
+}
+
+pre {
+    color: white;
 }
 
 a {
@@ -35,4 +40,16 @@ div#loading-screen {
 
 h1 {
     color: white;
+}
+
+.bg-light h1 {
+    color: #888;
+}
+
+.bg-light label {
+    color: black;
+}
+
+.hidden {
+    display: none;
 }
