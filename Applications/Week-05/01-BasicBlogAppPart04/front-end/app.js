@@ -4,7 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-
+const csrf = require('csurf');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const post = require('./routes/post');
@@ -39,6 +39,16 @@ app.use(function(req, res, next) {
     }
 });
 
+// validate csrf (this must come before routes)
+app.use(csrf({ cookie: true }));
+
+// print headers
+app.use(function(req, res, next) {
+    console.log('headers:', JSON.stringify(req.headers));
+    next();
+});
+
+// routes
 app.use('/', index);
 app.use('/users', users);
 app.use('/post', post);
@@ -48,6 +58,14 @@ app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
+});
+
+// CSRF error handler
+app.use(function(err, req, res, next) {
+    if (err.code !== 'EBADCSRFTOKEN') return next(err)
+
+    // handle CSRF token errors here
+    res.redirect('/error/403');
 });
 
 // error handler
