@@ -58,6 +58,8 @@ app.use( '/api', controllers );
 app.use( function( err, req, res, next ) {
   if ( err.name === 'UnauthorizedError' ) {
     common.userNotAuthorized( res );
+  } else {
+    next();
   }
 } );
 
